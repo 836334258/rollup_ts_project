@@ -9,6 +9,7 @@ const postcssPresetEnv = require('postcss-preset-env')
 const del =require('rollup-plugin-delete') 
 const htmlTemplate =require('rollup-plugin-generate-html-template') 
 
+
 const isProduction = process.env.NODE_ENV === 'production'
 
 const plugins =
@@ -23,8 +24,8 @@ const plugins =
     : process.env.NODE_ENV !== 'development'
     ? [
         serve({
-          port:8080,
-          contentBase:''
+          port:8081,
+          contentBase:'dist'
         }),
         livereload({
           watch: 'dist'
@@ -39,6 +40,7 @@ module.exports = {
     sourcemap: false,
     format:'es'
   },
+  context:'window',
   plugins: [
     // del({ targets: 'dist/*' }),  //自动删除dist目录
     html({
@@ -55,15 +57,15 @@ module.exports = {
     //   template: 'index.html',
     //   target: 'dist/index.html',
     // }),
-    image(),
+    // image(),
     postcss({
-      extensions: ['.css', '.pcss', '.less', '.sass'],
+      extensions: ['.css', '.less'],
       minimize: isProduction,
       extract: true,
       // Or with custom file name, it will generate file relative to bundle.js in v3
       extract: 'index.css',
       plugins: [
-        postcssPresetEnv({ browsers: 'last 2 versions' })
+        postcssPresetEnv({ browsers: 'defaults' })
       ],
     }),
     typescript(),

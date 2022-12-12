@@ -1,10 +1,2 @@
-const test = (name) => {
-    console.log(name);
-};
-test('fsda');
-document.querySelector('div')?.addEventListener('click', () => {
-    console.log(undefined);
-});
-window.$utils.message('fsd');
 
-export { test as default };
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
